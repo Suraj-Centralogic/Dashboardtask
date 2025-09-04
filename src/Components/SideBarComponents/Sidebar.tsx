@@ -16,8 +16,6 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import { alpha, useTheme } from "@mui/material/styles";
-import ChevronLeftRoundedIcon from "@mui/icons-material/ChevronLeftRounded";
-import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
 import RocketLaunchRoundedIcon from "@mui/icons-material/RocketLaunchRounded";
 import SettingsRoundedIcon from "@mui/icons-material/SettingsRounded";
 import { NAV_ITEMS } from "./Navitems";
@@ -134,14 +132,22 @@ export function Sidebar({ initialOpen }: SidebarProps) {
           >
             {theme.direction === "rtl" ? (
               open ? (
-                <MenuOpenOutlinedIcon sx={{ fontSize: 28, color: theme.palette.primary.main }} />
+                <MenuOpenOutlinedIcon
+                  sx={{ fontSize: 28, color: theme.palette.primary.main }}
+                />
               ) : (
-                <MenuOpenOutlinedIcon sx={{ fontSize: 28,color: theme.palette.primary.main  }} />
+                <MenuOpenOutlinedIcon
+                  sx={{ fontSize: 28, color: theme.palette.primary.main }}
+                />
               )
             ) : open ? (
-              <MenuOpenOutlinedIcon sx={{ fontSize: 28, color: theme.palette.primary.main }} />
+              <MenuOpenOutlinedIcon
+                sx={{ fontSize: 28, color: theme.palette.primary.main }}
+              />
             ) : (
-              <MenuOpenOutlinedIcon sx={{ fontSize: 28, color: theme.palette.primary.main }} />
+              <MenuOpenOutlinedIcon
+                sx={{ fontSize: 28, color: theme.palette.primary.main }}
+              />
             )}
           </IconButton>
         </Box>

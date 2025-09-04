@@ -136,6 +136,7 @@ export default function ColumnGroupingTable() {
   ) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
+    setSortBy("Newest");
   };
 
   return (
@@ -236,13 +237,13 @@ export default function ColumnGroupingTable() {
             {rows
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row) => (
-                <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
+                <TableRow hover role="checkbox" tabIndex={-1}>
                   <TableCell>{row.name}</TableCell>
                   <TableCell>{row.company}</TableCell>
                   <TableCell>{row.phone}</TableCell>
                   <TableCell>{row.email}</TableCell>
                   <TableCell>{row.country}</TableCell>
-                  <TableCell align="rigth">
+                  <TableCell align="right">
                     <Chip
                       label={row.status}
                       variant="outlined"
