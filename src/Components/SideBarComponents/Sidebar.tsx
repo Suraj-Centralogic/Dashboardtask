@@ -123,25 +123,25 @@ export function Sidebar({ initialOpen }: SidebarProps) {
               width: open ? 40 : 30,
               height: open ? 40 : 30,
               padding: 0,
-              backgroundColor: "#ffffffcc",
+              backgroundColor: theme.palette.secondary.main,
               borderRadius: "50%",
               transition: "all 0.3s ease",
               "&:hover": {
-                backgroundColor: "#f0f0f0",
+                backgroundColor: theme.palette.secondary.main,
                 transform: "scale(1.1)",
               },
             }}
           >
             {theme.direction === "rtl" ? (
               open ? (
-                <MenuOpenOutlinedIcon sx={{ fontSize: 28, color: "#4000FF" }} />
+                <MenuOpenOutlinedIcon sx={{ fontSize: 28, color: theme.palette.primary.main }} />
               ) : (
-                <MenuOpenOutlinedIcon sx={{ fontSize: 28, color: "#4000FF" }} />
+                <MenuOpenOutlinedIcon sx={{ fontSize: 28,color: theme.palette.primary.main  }} />
               )
             ) : open ? (
-              <MenuOpenOutlinedIcon sx={{ fontSize: 28, color: "#4000FF" }} />
+              <MenuOpenOutlinedIcon sx={{ fontSize: 28, color: theme.palette.primary.main }} />
             ) : (
-              <MenuOpenOutlinedIcon sx={{ fontSize: 28, color: "#4000FF" }} />
+              <MenuOpenOutlinedIcon sx={{ fontSize: 28, color: theme.palette.primary.main }} />
             )}
           </IconButton>
         </Box>
@@ -166,11 +166,11 @@ export function Sidebar({ initialOpen }: SidebarProps) {
                       gap: open ? 2 : 2,
                       mt: { xs: 1, md: 2 },
                       "&.Mui-selected": {
-                        backgroundColor: "#5932EA",
+                        backgroundColor: theme.palette.primary.main,
                         color: "#FFFFFF",
 
                         "&:hover": {
-                          backgroundColor: "#3300CC",
+                          backgroundColor: theme.palette.primary.main,
                         },
                       },
                       "&:hover": {
