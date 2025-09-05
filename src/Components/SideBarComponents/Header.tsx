@@ -70,7 +70,7 @@ const Header: React.FC = () => {
             borderRadius: 999,
             bgcolor:
               theme.palette.mode === "light"
-                ? alpha("#fff", 0.9)
+                ? alpha(theme.palette.common.white, 0.9)
                 : theme.palette.background.paper,
             boxShadow:
               theme.palette.mode === "light"

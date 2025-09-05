@@ -50,11 +50,13 @@ export function Sidebar({ initialOpen }: SidebarProps) {
       <Box
         sx={{
           width: open ? 264 : 78,
+            bgcolor:theme.palette.custom.white,
           transition: theme.transitions.create("width", {
             duration: theme.transitions.duration.shorter,
+          
           }),
           overflow: "hidden",
-          bgcolor: "#FFFFFF",
+        
           borderRight: "1px solid",
           borderColor: theme.palette.divider,
           overflowY: "auto",
@@ -173,14 +175,14 @@ export function Sidebar({ initialOpen }: SidebarProps) {
                       mt: { xs: 1, md: 2 },
                       "&.Mui-selected": {
                         backgroundColor: theme.palette.primary.main,
-                        color: "#FFFFFF",
+                        color: theme.palette.custom.white,
 
                         "&:hover": {
                           backgroundColor: theme.palette.primary.main,
                         },
                       },
                       "&:hover": {
-                        backgroundColor: "#F0F0F0",
+                        backgroundColor: theme.palette.custom.white,
                       },
                       justifyContent: open ? "flex-start" : "center",
                       px: open ? 2 : 0,
@@ -188,7 +190,7 @@ export function Sidebar({ initialOpen }: SidebarProps) {
                   >
                     <ListItemIcon
                       sx={{
-                        color: selected ? "#FFFFFF" : "#9197B3",
+                        color: selected ? theme.palette.custom.white : theme.palette.custom.ruby,
                         minWidth: 36,
                         gap: 12,
                         justifyContent: "center",
@@ -214,7 +216,7 @@ export function Sidebar({ initialOpen }: SidebarProps) {
                           primary={
                             <Typography
                               fontWeight={600}
-                              color={selected ? "#FFFFFF" : "#000000ff"}
+                              color={selected ? theme.palette.custom.white: "#000000ff"}
                               sx={{ fontSize: "16px" }}
                             >
                               {item.label}
@@ -223,7 +225,7 @@ export function Sidebar({ initialOpen }: SidebarProps) {
                         />
                         <NavigateNextIcon
                           sx={{
-                            color: selected ? "#FFFFFF" : "#9197B3",
+                            color: selected ? theme.palette.custom.white : theme.palette.custom.ruby,
                             fontSize: 20,
                           }}
                         />

@@ -7,6 +7,8 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
+import { useTheme } from "@mui/material/styles";
+
 import {
   Box,
   Chip,
@@ -126,6 +128,8 @@ export default function ColumnGroupingTable() {
   const [rowsPerPage, setRowsPerPage] = React.useState(6);
   const [search, setSearch] = React.useState("");
   const [sortBy, setSortBy] = React.useState<SortKey>("Newest");
+    const theme = useTheme();
+  
 
   const handleChangePage = (_event: unknown, newPage: number) => {
     setPage(newPage);
@@ -156,8 +160,7 @@ export default function ColumnGroupingTable() {
           </Typography>
           <Typography
             variant="body2"
-            color="#16C098"
-            sx={{ mt: 0.5, fontWeight: 600 }}
+            sx={{ mt: 0.5, fontWeight: 600, color :theme.palette.custom.slate }}
           >
             Active Members
           </Typography>
@@ -181,7 +184,7 @@ export default function ColumnGroupingTable() {
                 </InputAdornment>
               ),
             }}
-            sx={{ minWidth: 260, bgcolor: "#f5f7fb", borderRadius: 2 }}
+            sx={{ minWidth: 260, bgcolor:theme.palette.custom.ocean, borderRadius: 2 }}
           />
 
           <Box>
@@ -190,9 +193,9 @@ export default function ColumnGroupingTable() {
                 px: 1.5,
                 py: 1,
                 borderRadius: 2,
-                bgcolor: "#f5f7fb",
+                bgcolor: theme.palette.custom.ocean,
                 color: "text.primary",
-                "&:hover": { bgcolor: "#eef1f7" },
+                "&:hover": { bgcolor: theme.palette.custom.ocean },
               }}
             >
               <Typography variant="body2" sx={{ mr: 0.5 }}>
@@ -221,7 +224,7 @@ export default function ColumnGroupingTable() {
                   sx={{
                     position: "sticky",
                     top: 1,
-                    color: "#B5B7C0",
+                    color: theme.palette.custom.ocean,
                     bgcolor: "background.paper",
                     zIndex: 2,
                     fontWeight: 600,
@@ -251,14 +254,10 @@ export default function ColumnGroupingTable() {
                       size="small"
                       sx={{
                         fontWeight: 600,
-                        borderColor:
-                          row.status === "Active"
-                            ? "rgba(16,185,129,0.35)"
-                            : "rgba(239,68,68,0.35)",
                         bgcolor:
                           row.status === "Active"
-                            ? "rgba(16,185,129,0.10)"
-                            : "rgba(239,68,68,0.10)",
+                            ?  theme.palette.success.main
+                            :  theme.palette.error.main,
                       }}
                     />
                   </TableCell>
