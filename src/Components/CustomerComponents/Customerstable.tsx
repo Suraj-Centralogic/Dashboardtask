@@ -128,8 +128,7 @@ export default function ColumnGroupingTable() {
   const [rowsPerPage, setRowsPerPage] = React.useState(6);
   const [search, setSearch] = React.useState("");
   const [sortBy, setSortBy] = React.useState<SortKey>("Newest");
-    const theme = useTheme();
-  
+  const theme = useTheme();
 
   const handleChangePage = (_event: unknown, newPage: number) => {
     setPage(newPage);
@@ -160,7 +159,7 @@ export default function ColumnGroupingTable() {
           </Typography>
           <Typography
             variant="body2"
-            sx={{ mt: 0.5, fontWeight: 600, color :theme.palette.custom.slate }}
+            sx={{ mt: 0.5, fontWeight: 600, color: theme.palette.custom.slate }}
           >
             Active Members
           </Typography>
@@ -184,7 +183,11 @@ export default function ColumnGroupingTable() {
                 </InputAdornment>
               ),
             }}
-            sx={{ minWidth: 260, bgcolor:theme.palette.custom.ocean, borderRadius: 2 }}
+            sx={{
+              minWidth: 260,
+              bgcolor: theme.palette.custom.ocean,
+              borderRadius: 2,
+            }}
           />
 
           <Box>
@@ -256,8 +259,8 @@ export default function ColumnGroupingTable() {
                         fontWeight: 600,
                         bgcolor:
                           row.status === "Active"
-                            ?  theme.palette.success.main
-                            :  theme.palette.error.main,
+                            ? theme.palette.success.main
+                            : theme.palette.error.main,
                       }}
                     />
                   </TableCell>

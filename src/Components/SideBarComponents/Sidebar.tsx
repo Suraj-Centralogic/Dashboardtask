@@ -50,13 +50,12 @@ export function Sidebar({ initialOpen }: SidebarProps) {
       <Box
         sx={{
           width: open ? 264 : 78,
-            bgcolor:theme.palette.custom.white,
+          bgcolor: theme.palette.custom.white,
           transition: theme.transitions.create("width", {
             duration: theme.transitions.duration.shorter,
-          
           }),
           overflow: "hidden",
-        
+
           borderRight: "1px solid",
           borderColor: theme.palette.divider,
           overflowY: "auto",
@@ -190,7 +189,9 @@ export function Sidebar({ initialOpen }: SidebarProps) {
                   >
                     <ListItemIcon
                       sx={{
-                        color: selected ? theme.palette.custom.white : theme.palette.custom.ruby,
+                        color: selected
+                          ? theme.palette.custom.white
+                          : theme.palette.custom.ruby,
                         minWidth: 36,
                         gap: 12,
                         justifyContent: "center",
@@ -216,7 +217,11 @@ export function Sidebar({ initialOpen }: SidebarProps) {
                           primary={
                             <Typography
                               fontWeight={600}
-                              color={selected ? theme.palette.custom.white: "#000000ff"}
+                              color={
+                                selected
+                                  ? theme.palette.custom.white
+                                  : "#000000ff"
+                              }
                               sx={{ fontSize: "16px" }}
                             >
                               {item.label}
@@ -225,7 +230,9 @@ export function Sidebar({ initialOpen }: SidebarProps) {
                         />
                         <NavigateNextIcon
                           sx={{
-                            color: selected ? theme.palette.custom.white : theme.palette.custom.ruby,
+                            color: selected
+                              ? theme.palette.custom.white
+                              : theme.palette.custom.ruby,
                             fontSize: 20,
                           }}
                         />

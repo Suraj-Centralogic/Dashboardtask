@@ -1,19 +1,43 @@
-import "./App.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import HomePage from "./Pages/HomePage";
-import { MuiThemeProvider } from "./Components/SideBarComponents/Muithemeprovider";
-import Sidebarmain from "./Components/SideBarComponents/Sidebarmain";
-import CustomerPage from "./Pages/CustomerPage";
+import './App.css';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from 'react-router-dom';
+import HomePage from './Pages/HomePage';
+import CustomerPage from './Pages/CustomerPage';
+import { MuiThemeProvider } from './Components/SideBarComponents/Muithemeprovider';
+import Sidebarmain from './Components/SideBarComponents/Sidebarmain';
+import { useState, useEffect } from 'react';
+import AuthPage from './Components/HomePageComponents/AuthPage';
 
 function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+
+  useEffect(() => {
+    const token = 'authToken';
+    setIsAuthenticated(!!token);
+  }, []);
+
   return (
     <MuiThemeProvider>
       <Router>
         <Routes>
-          <Route path="/" element={<Sidebarmain />}>
-            <Route index element={<HomePage />} />
-            <Route path="customers" element={<CustomerPage />} />
-          </Route>
+          {isAuthenticated ? (
+            <Route path="/" element={<Sidebarmain />}>
+              <Route index element={<HomePage />} />
+              <Route path="customers" element={<CustomerPage />} />
+
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </Route>
+          ) : (
+            <>
+              <Route path="/" element={<AuthPage />} />
+
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </>
+          )}
         </Routes>
       </Router>
     </MuiThemeProvider>

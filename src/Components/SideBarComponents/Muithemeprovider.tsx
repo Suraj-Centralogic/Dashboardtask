@@ -5,7 +5,16 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 declare module "@mui/material/styles" {
   interface Palette {
     custom: {
-      white: SystemStyleObject<Theme> | CssVariableType | ((theme: Theme) => string | number | SystemStyleObject<Theme>) | ResponsiveStyleValue<readonly string[] | BackgroundColor | undefined> | ((theme: Theme) => ResponsiveStyleValue<readonly string[] | BackgroundColor | undefined>);
+      white:
+        | SystemStyleObject<Theme>
+        | CssVariableType
+        | ((theme: Theme) => string | number | SystemStyleObject<Theme>)
+        | ResponsiveStyleValue<readonly string[] | BackgroundColor | undefined>
+        | ((
+            theme: Theme,
+          ) => ResponsiveStyleValue<
+            readonly string[] | BackgroundColor | undefined
+          >);
       slate: string;
       ocean: string;
       gold: string;
