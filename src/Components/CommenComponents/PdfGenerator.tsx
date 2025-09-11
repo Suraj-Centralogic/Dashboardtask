@@ -108,26 +108,13 @@ const PdfGenerator = ({}: PdfGeneratorProps) => {
         while (renderedHeight < pxFullHeight) {
           const pageCanvas = document.createElement('canvas');
           pageCanvas.width = canvas.width;
-          pageCanvas.height = Math.min(
-            pageHeightPx,
-            pxFullHeight - renderedHeight
-          );
+          pageCanvas.height = Math.min(pageHeightPx, pxFullHeight - renderedHeight);
 
           const ctx = pageCanvas.getContext('2d');
           if (!ctx) {
             throw new Error('Failed to get 2D context from canvas.');
           }
-          ctx.drawImage(
-            canvas,
-            0,
-            renderedHeight,
-            canvas.width,
-            pageCanvas.height,
-            0,
-            0,
-            canvas.width,
-            pageCanvas.height
-          );
+          ctx.drawImage(canvas, 0, renderedHeight, canvas.width, pageCanvas.height, 0, 0, canvas.width, pageCanvas.height);
 
           const pageData = pageCanvas.toDataURL('image/png');
 
@@ -137,24 +124,12 @@ const PdfGenerator = ({}: PdfGeneratorProps) => {
 
           const pageImageHeight = (pageCanvas.height * imgWidth) / canvas.width;
           // Draw the image with padding offsets
-          pdf.addImage(
-            pageData,
-            'PNG',
-            padding,
-            padding,
-            imgWidth,
-            pageImageHeight
-          );
+          pdf.addImage(pageData, 'PNG', padding, padding, imgWidth, pageImageHeight);
 
           // Draw border inside padding area
           pdf.setDrawColor(0, 0, 0); // black border
           pdf.setLineWidth(0.5);
-          pdf.rect(
-            padding,
-            padding,
-            pdfWidth - padding * 2,
-            pdfHeight - padding * 2
-          );
+          pdf.rect(padding, padding, pdfWidth - padding * 2, pdfHeight - padding * 2);
 
           renderedHeight += pageHeightPx;
         }
@@ -168,10 +143,7 @@ const PdfGenerator = ({}: PdfGeneratorProps) => {
 
   return (
     <Card sx={{ maxWidth: 600, mx: 'auto' }}>
-      <CardHeader
-        title="Fill Agreement Details"
-        sx={{ textAlign: 'center', backgroundColor: '#f5f5f5' }}
-      />
+      <CardHeader title="Fill Agreement Details" sx={{ textAlign: 'center', backgroundColor: '#f5f5f5' }} />
       <CardContent>
         <Box
           component="form"
@@ -184,16 +156,8 @@ const PdfGenerator = ({}: PdfGeneratorProps) => {
           noValidate
           autoComplete="off"
         >
-          <CustomTextField
-            name="AgentName"
-            label="Agent Name"
-            formik={formik}
-          />
-          <CustomTextField
-            name="ClientName"
-            label="Client Name"
-            formik={formik}
-          />
+          <CustomTextField name="AgentName" label="Agent Name" formik={formik} />
+          <CustomTextField name="ClientName" label="Client Name" formik={formik} />
           <CustomTextField
             name="EffectiveDate"
             label="Effective Date"
@@ -201,19 +165,9 @@ const PdfGenerator = ({}: PdfGeneratorProps) => {
             type="date"
             InputLabelProps={{ shrink: true }}
           />
-          <CustomTextField
-            name="ReferralFee"
-            label="Referral Fee (%)"
-            formik={formik}
-          />
+          <CustomTextField name="ReferralFee" label="Referral Fee (%)" formik={formik} />
 
-          <Button
-            type="submit"
-            variant="contained"
-            color="primary"
-            fullWidth
-            disabled={!formik.isValid || !formik.dirty}
-          >
+          <Button type="submit" variant="contained" color="primary" fullWidth disabled={!formik.isValid || !formik.dirty}>
             Generate PDF
           </Button>
         </Box>

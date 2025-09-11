@@ -96,10 +96,7 @@ const HomePage = () => {
   return (
     <Box sx={{ flex: 1, mt: 8, p: 4, overflowY: 'auto' }}>
       <Card sx={{ mx: 'auto' }}>
-        <CardHeader
-          title="REFERRAL AGREEMENT"
-          sx={{ textAlign: 'center', backgroundColor: '#f0f0f0' }}
-        />
+        <CardHeader title="REFERRAL AGREEMENT" sx={{ textAlign: 'center', backgroundColor: '#f0f0f0' }} />
         <CardContent>
           <Typography color="textSecondary" mb={2}>
             Click the buttons below to open the editor or generate a PDF form.
@@ -117,10 +114,7 @@ const HomePage = () => {
               }}
             >
               <DialogTitle>REFERRAL AGREEMENT</DialogTitle>
-              <DialogContent
-                dividers
-                sx={{ maxHeight: '90vh', overflowY: 'auto' }}
-              >
+              <DialogContent dividers sx={{ maxHeight: '90vh', overflowY: 'auto' }}>
                 <EmailTemplateEditor template={template} />
               </DialogContent>
               <DialogActions></DialogActions>
@@ -138,22 +132,13 @@ const HomePage = () => {
               Text Editor
             </Button>
 
-            <Dialog
-              open={openPdf}
-              onClose={() => setOpenPdf(false)}
-              maxWidth="md"
-              fullWidth
-            >
+            <Dialog open={openPdf} onClose={() => setOpenPdf(false)} maxWidth="md" fullWidth>
               <DialogTitle>Form</DialogTitle>
               <DialogContent dividers>
                 <PdfGenerator template={template} />
               </DialogContent>
               <DialogActions>
-                <Button
-                  onClick={() => setOpenPdf(false)}
-                  variant="contained"
-                  color="primary"
-                >
+                <Button onClick={() => setOpenPdf(false)} variant="contained" color="primary">
                   Close
                 </Button>
               </DialogActions>
