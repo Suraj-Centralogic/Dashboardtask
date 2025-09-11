@@ -10,7 +10,9 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
+.pdf-root {
+  color: #000000; /* default black text */
+}
 a {
   font-weight: 500;
   color: #646cff;
