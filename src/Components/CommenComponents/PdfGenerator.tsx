@@ -29,6 +29,7 @@ const PdfGenerator = ({}: PdfGeneratorProps) => {
         const template = localStorage.getItem('emailTemplate');
         if (!template) {
           console.error('No email template found in local storage.');
+          alert('First save data in Local storage or Edit first ');
           return;
         }
         const filledTemplate = template
@@ -54,12 +55,10 @@ const PdfGenerator = ({}: PdfGeneratorProps) => {
         p { margin: 0 0 10px 0; color: #000000; }
         .ql-align-center { text-align: center; }
         body, .pdf-root {
-         background-color: #ffffff;
-         padding-left: 12px;  
-         padding-right: 12px;
-         border: 1px solid #423636ff;
-         border-radius: 4px;  
-         margin: 10px;
+          background-color: #ffffff;
+          padding-left: 4px;  
+          padding-right: 4px;
+          margin: 10px;
         }
       </style>
       <div class="pdf-root">
@@ -69,11 +68,15 @@ const PdfGenerator = ({}: PdfGeneratorProps) => {
         tempElement.style.position = 'fixed';
         tempElement.style.top = '0';
         tempElement.style.left = '0';
-        tempElement.style.width = `${mmToPx(210)}px`;
+        tempElement.style.width = `${mmToPx(210)}px`; // A4 width
         document.body.appendChild(tempElement);
+
+        // Wait for fonts
         if (document.fonts && document.fonts.ready) {
           await document.fonts.ready;
         }
+
+        // Render HTML to canvas
         const canvas = await html2canvas(tempElement, {
           scale: window.devicePixelRatio || 2,
           useCORS: true,
@@ -81,28 +84,82 @@ const PdfGenerator = ({}: PdfGeneratorProps) => {
           backgroundColor: '#ffffff',
         });
 
-        const imgData = canvas.toDataURL('image/png');
+        // Clean up temp element
+        document.body.removeChild(tempElement);
+
+        // Create PDF
         const pdf = new jsPDF('p', 'mm', 'a4');
         const pdfWidth = pdf.internal.pageSize.getWidth();
         const pdfHeight = pdf.internal.pageSize.getHeight();
-        pdf.setDrawColor(66, 54, 54);
-        pdf.setLineWidth(0.5);
-        pdf.rect(5, 5, pdfWidth - 10, pdfHeight - 10);
-        const imgWidth = pdfWidth;
-        const imgHeight = (canvas.height * imgWidth) / canvas.width;
-        let heightLeft = imgHeight;
-        let position = 0;
 
-        pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-        heightLeft -= pdfHeight;
-        while (heightLeft > 0) {
-          position = -(imgHeight - heightLeft);
-          pdf.addPage();
-          pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-          heightLeft -= pdfHeight;
+        // Define padding for inside the border (in mm)
+        const padding = 10; // 10mm padding on all sides
+
+        const imgWidth = pdfWidth - padding * 2; // reduce width by padding
+        const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+        // Convert height from px to mm
+        const pxFullHeight = canvas.height;
+        const pxPerMm = canvas.height / imgHeight;
+        const pageHeightPx = (pdfHeight - padding * 2) * pxPerMm; // reduce height by padding
+
+        let renderedHeight = 0;
+
+        while (renderedHeight < pxFullHeight) {
+          const pageCanvas = document.createElement('canvas');
+          pageCanvas.width = canvas.width;
+          pageCanvas.height = Math.min(
+            pageHeightPx,
+            pxFullHeight - renderedHeight
+          );
+
+          const ctx = pageCanvas.getContext('2d');
+          if (!ctx) {
+            throw new Error('Failed to get 2D context from canvas.');
+          }
+          ctx.drawImage(
+            canvas,
+            0,
+            renderedHeight,
+            canvas.width,
+            pageCanvas.height,
+            0,
+            0,
+            canvas.width,
+            pageCanvas.height
+          );
+
+          const pageData = pageCanvas.toDataURL('image/png');
+
+          if (renderedHeight > 0) {
+            pdf.addPage();
+          }
+
+          const pageImageHeight = (pageCanvas.height * imgWidth) / canvas.width;
+          // Draw the image with padding offsets
+          pdf.addImage(
+            pageData,
+            'PNG',
+            padding,
+            padding,
+            imgWidth,
+            pageImageHeight
+          );
+
+          // Draw border inside padding area
+          pdf.setDrawColor(0, 0, 0); // black border
+          pdf.setLineWidth(0.5);
+          pdf.rect(
+            padding,
+            padding,
+            pdfWidth - padding * 2,
+            pdfHeight - padding * 2
+          );
+
+          renderedHeight += pageHeightPx;
         }
+
         pdf.save('Referral_Agreement.pdf');
-        document.body.removeChild(tempElement);
       } catch (err) {
         console.error('PDF generation error:', err);
       }
@@ -111,7 +168,10 @@ const PdfGenerator = ({}: PdfGeneratorProps) => {
 
   return (
     <Card sx={{ maxWidth: 600, mx: 'auto' }}>
-      <CardHeader title="Fill Agreement Details" sx={{ textAlign: 'center', backgroundColor: '#f5f5f5' }} />
+      <CardHeader
+        title="Fill Agreement Details"
+        sx={{ textAlign: 'center', backgroundColor: '#f5f5f5' }}
+      />
       <CardContent>
         <Box
           component="form"
@@ -124,8 +184,16 @@ const PdfGenerator = ({}: PdfGeneratorProps) => {
           noValidate
           autoComplete="off"
         >
-          <CustomTextField name="AgentName" label="Agent Name" formik={formik} />
-          <CustomTextField name="ClientName" label="Client Name" formik={formik} />
+          <CustomTextField
+            name="AgentName"
+            label="Agent Name"
+            formik={formik}
+          />
+          <CustomTextField
+            name="ClientName"
+            label="Client Name"
+            formik={formik}
+          />
           <CustomTextField
             name="EffectiveDate"
             label="Effective Date"
@@ -133,9 +201,19 @@ const PdfGenerator = ({}: PdfGeneratorProps) => {
             type="date"
             InputLabelProps={{ shrink: true }}
           />
-          <CustomTextField name="ReferralFee" label="Referral Fee (%)" formik={formik} />
+          <CustomTextField
+            name="ReferralFee"
+            label="Referral Fee (%)"
+            formik={formik}
+          />
 
-          <Button type="submit" variant="contained" color="primary" fullWidth disabled={!formik.isValid || !formik.dirty}>
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            fullWidth
+            disabled={!formik.isValid || !formik.dirty}
+          >
             Generate PDF
           </Button>
         </Box>
