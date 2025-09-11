@@ -1,9 +1,15 @@
-import { Card, CardContent, CardHeader, Button, Box } from '@mui/material';
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  Button,
+  Box,
+  TextField,
+} from '@mui/material';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import CustomTextField from './CustomTextField';
 
 type PdfGeneratorProps = {
   template: string;
@@ -23,27 +29,28 @@ export default function PdfGenerator({}: PdfGeneratorProps) {
       AgentName: Yup.string().required('Agent Name is required'),
       ReferralFee: Yup.string().required('Referral Fee is required'),
     }),
+
     onSubmit: async (values) => {
-      const template = localStorage.getItem('emailTemplate');
-
-      if (!template) {
-        console.error('No template found in localStorage');
-        return;
-      }
-
       try {
+        const template = localStorage.getItem('emailTemplate');
+        if (!template) {
+          console.error('No email template found in local storage.');
+          return;
+        }
         const filledTemplate = template
-          .replace(/{ClientName}/g, values.ClientName)
-          .replace(/{EffectiveDate}/g, values.EffectiveDate)
-          .replace(/{AgentName}/g, values.AgentName)
-          .replace(/{ReferralFee}/g, values.ReferralFee);
+          .replace(/{ClientName}/g, values.ClientName || '')
+          .replace(/{EffectiveDate}/g, values.EffectiveDate || '')
+          .replace(/{AgentName}/g, values.AgentName || '')
+          .replace(/{ReferralFee}/g, values.ReferralFee || '');
 
         const tempElement = document.createElement('div');
         tempElement.innerHTML = filledTemplate;
         tempElement.style.position = 'absolute';
-        tempElement.style.left = '-9999px';
+        tempElement.style.left = '-9999px'; // Position off-screen
         tempElement.style.width = '800px';
         tempElement.style.boxSizing = 'border-box';
+        // Add padding to the temporary element itself
+        tempElement.style.padding = '20mm 10mm';
         document.body.appendChild(tempElement);
 
         const canvas = await html2canvas(tempElement, { scale: 2 });
@@ -52,31 +59,22 @@ export default function PdfGenerator({}: PdfGeneratorProps) {
         const pdf = new jsPDF('p', 'mm', 'a4');
         const pdfWidth = 210;
         const pdfHeight = 297;
-        const padding = 10;
-        const imgWidth = pdfWidth - 2 * padding;
+        const imgWidth = pdfWidth;
         const imgHeight = (canvas.height * imgWidth) / canvas.width;
 
         let heightLeft = imgHeight;
         let position = 0;
 
-        // Add the first page of the PDF
-        pdf.addImage(imgData, 'PNG', padding, padding, imgWidth, imgHeight);
-        heightLeft -= pdfHeight - 2 * padding;
-        position = -(pdfHeight - 2 * padding);
+        // Add the first page
+        pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+        heightLeft -= pdfHeight;
 
         // Add subsequent pages if needed
         while (heightLeft > 0) {
+          position = -(imgHeight - heightLeft);
           pdf.addPage();
-          pdf.addImage(
-            imgData,
-            'PNG',
-            padding,
-            position + padding,
-            imgWidth,
-            imgHeight
-          );
-          heightLeft -= pdfHeight - 2 * padding;
-          position -= pdfHeight - 2 * padding;
+          pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+          heightLeft -= pdfHeight;
         }
 
         pdf.save('Referral_Agreement.pdf');
@@ -105,26 +103,56 @@ export default function PdfGenerator({}: PdfGeneratorProps) {
           noValidate
           autoComplete="off"
         >
-          <CustomTextField
+          <TextField
             name="AgentName"
             label="Agent Name"
-            formik={formik}
+            value={formik.values.AgentName}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            error={formik.touched.AgentName && Boolean(formik.errors.AgentName)}
+            helperText={formik.touched.AgentName && formik.errors.AgentName}
+            fullWidth
           />
-          <CustomTextField
+          <TextField
             name="ClientName"
             label="Client Name"
-            formik={formik}
+            value={formik.values.ClientName}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            error={
+              formik.touched.ClientName && Boolean(formik.errors.ClientName)
+            }
+            helperText={formik.touched.ClientName && formik.errors.ClientName}
+            fullWidth
           />
-          <CustomTextField
+          <TextField
             name="EffectiveDate"
             label="Effective Date"
-            formik={formik}
             type="date"
+            InputLabelProps={{ shrink: true }}
+            value={formik.values.EffectiveDate}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            error={
+              formik.touched.EffectiveDate &&
+              Boolean(formik.errors.EffectiveDate)
+            }
+            helperText={
+              formik.touched.EffectiveDate && formik.errors.EffectiveDate
+            }
+            fullWidth
           />
-          <CustomTextField
+          <TextField
             name="ReferralFee"
             label="Referral Fee (%)"
-            formik={formik}
+            value={formik.values.ReferralFee}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            error={
+              formik.touched.ReferralFee && Boolean(formik.errors.ReferralFee)
+            }
+            helperText={formik.touched.ReferralFee && formik.errors.ReferralFee}
+            fullWidth
           />
 
           <Button

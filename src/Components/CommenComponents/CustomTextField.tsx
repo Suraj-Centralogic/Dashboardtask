@@ -42,7 +42,7 @@ const CustomTextField: React.FC<CustomTextFieldProps> = ({
       label={label}
       variant="outlined"
       fullWidth
-      value={formik.values[name] || ''} // Default to empty string for safety
+      value={formik.values[name] || ''}
       onChange={formik.handleChange}
       onBlur={formik.handleBlur}
       error={error}
