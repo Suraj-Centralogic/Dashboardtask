@@ -63,8 +63,6 @@ export default function HomePage() {
   <ul style="margin-left: 20px; padding-left: 15px; list-style-type: disc;">
     <li>A referral fee is triggered when a transaction closes within two years of the date of the Referral.</li>
     <li>The referral fee to Realty Connect shall be <span style="font-weight: bold;">{ReferralFee}%</span> of the receiving Agent’s side of total Gross Commission Income (GCI) prior to any splits or concessions.</li>
-    <li>If an Agent represents a client referred by Realty Connect in multiple transactions, a <span style="font-weight: bold;">{ReferralFee}%</span> referral fee will apply to those transactions unless otherwise agreed to by Realty Connect and the Agent.</li>
-    <li>GCI is calculated as the total amount received by the Agent’s broker prior to any split of commission.</li>
     <li>Upon execution of a contract, the Agent will promptly update the referral in the Realty Connect System with the anticipated closing date.</li>
     <li>The receiving Agent will ensure the referral fee is paid to Realty Connect within 10 business days of close of escrow.</li>
   </ul>
@@ -74,16 +72,13 @@ export default function HomePage() {
     FINE PRINT AND OTHER DETAILS
   </h3>
   <ul style="margin-left: 20px; padding-left: 15px; list-style-type: disc;">
-    <li>The Agent is responsible for the real estate brokerage services provided to the Clients.</li>
     <li>The Agent will maintain their license and comply with all state laws, documentation, and disclosure requirements.</li>
-    <li>Realty Connect will not handle clients seeking to buy/sell properties under $100,000 or rent/lease.</li>
-    <li>The Agreement is governed by state laws and can only be amended in writing.</li>
     <li>All notices between Realty Connect and the Agent must be sent to the email addresses listed below.</li>
     <li>Legal disputes will be resolved with the prevailing party entitled to recover attorney’s fees and costs.</li>
   </ul>
 
   <!-- Signature Section -->
-<div style="margin-top: 30px; width: 100%; display: flex; justify-content: space-between;">
+<div style="margin-top: 20px; width: 100%; display: flex; justify-content: space-between;">
   <!-- Left Column -->
   <div style="width: 48%;">
     <p style="margin: 0 0 5px;">BY:</p>

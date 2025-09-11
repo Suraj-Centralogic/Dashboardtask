@@ -32,14 +32,12 @@ export default function PdfGenerator({}: PdfGeneratorProps) {
 
     onSubmit: async (values) => {
       const mmToPx = (mm: any) => Math.round(mm * (96 / 25.4));
-
       try {
         const template = localStorage.getItem('emailTemplate');
         if (!template) {
           console.error('No email template found in local storage.');
           return;
         }
-        console.log(template);
         const filledTemplate = template
           .replace(/{ClientName}/g, values.ClientName || '')
           .replace(/{EffectiveDate}/g, values.EffectiveDate || '')
@@ -50,14 +48,13 @@ export default function PdfGenerator({}: PdfGeneratorProps) {
 
         tempElement.innerHTML = `
       <style>
-      
         .pdf-root {
           font-family: Arial, sans-serif;
           color: #000000;
         }
         h1, h2, h3, h4, h5, h6 {
           color: #000000;
-          margin: 0;
+          margin-top: 2;
         }
         strong { font-weight: bold; }
         u { text-decoration: underline; }
@@ -69,8 +66,10 @@ export default function PdfGenerator({}: PdfGeneratorProps) {
           background-color: #ffffff;
            padding-left: 12px;  
            padding-right: 12px;
-         border: 1px solid #423636ff;
+             border: 1px solid #423636ff;
          border-radius: 4px;  
+         margin: 10px;
+       
          margin: 10px;
         }
       </style>
@@ -79,7 +78,6 @@ export default function PdfGenerator({}: PdfGeneratorProps) {
       </div>
     `;
 
-        // Position element but keep it rendered and invisible
         tempElement.style.position = 'fixed';
         tempElement.style.top = '0';
         tempElement.style.left = '0';
@@ -100,6 +98,9 @@ export default function PdfGenerator({}: PdfGeneratorProps) {
         const pdf = new jsPDF('p', 'mm', 'a4');
         const pdfWidth = pdf.internal.pageSize.getWidth();
         const pdfHeight = pdf.internal.pageSize.getHeight();
+        pdf.setDrawColor(66, 54, 54);
+        pdf.setLineWidth(0.5);
+        pdf.rect(5, 5, pdfWidth - 10, pdfHeight - 10);
 
         const imgWidth = pdfWidth;
         const imgHeight = (canvas.height * imgWidth) / canvas.width;
