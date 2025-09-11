@@ -45,33 +45,6 @@ export default function HomePage() {
             <li style="margin-bottom: 5px;">Upon execution of a contract for a transaction involving a Referral, the Agent will promptly update the referral in the Realty Connect System and indicate the anticipated Closing date.</li>
             <li style="margin-bottom: 5px;">The receiving Agent will have the resulting referral fee paid by their employing broker to Realty Connect within 10 business days of close of escrow.</li>
         </ul>
- 
-        <h3 style="font-family: Arial, sans-serif; font-size: 12pt; color: #2E3B55; border-bottom: 2px solid #2E3B55; padding-bottom: 5px; margin-top: 25px; margin-bottom: 10px;">FINE PRINT AND OTHER DETAILS</h3>
-        <ul style="list-style-type: disc; padding-left: 20px; margin-bottom: 15px;">
-            <li style="margin-bottom: 5px;">The Agent is responsible for the real estate brokerage services provided to the Clients. The Agent agrees to indemnify and hold Realty Connect harmless from any claims, costs, and damages incurred by Realty Connect arising from claims by Clients regarding the brokerage services provided by the Agent.</li>
-            <li style="margin-bottom: 5px;">The Agent is responsible for maintaining his or her real estate license and for following all applicable real estate laws regarding disclosures, documentation, and other broker responsibilities.</li>
-            <li style="margin-bottom: 5px;">In the unlikely event of a legal dispute between Realty Connect and the Agent, the prevailing party will be entitled to recover its attorneys' fees and costs from the other party.</li>
-            <li style="margin-bottom: 5px;">This Agreement will be governed by state laws, without regard to its conflict of law's provisions.</li>
-            <li style="margin-bottom: 5px;">Any notices between Realty Connect and the Agent are to be sent to the email addresses below. The agent is responsible for notifying Realty Connect if their email address changes.</li>
-            <li style="margin-bottom: 5px;">No clients wanting to buy or sell properties under $100,000 are permitted into the network. Agents who submit referrals into the network that result in a settlement price under $100,000 will forfeit any referral commission owed. Likewise, no clients wanting to lease or rent real estate are permitted into the network either. If you have a client who wants to buy/sell real estate under $100,000 or rent/lease a property, the ONLY option you have as a Realty Connect agent is to "Choose Your Own Agent".</li>
-        </ul>
- 
-        <div style="margin-top: 40px; display: flex; justify-content: space-between;">
-            <div style="flex: 1; margin-right: 20px;">
-                <p style="margin-bottom: 0;">BY:</p>
-                <div style="border-bottom: 1px solid #000; height: 1px; width: 100%; margin-top: 50px;"></div>
-                <p style="text-align: center; margin-top: 5px; font-size: 10pt; text-transform: uppercase;">AGENT</p>
-                <p style="font-size: 10pt; margin-top: 20px; margin-bottom: 10px;">DATE: <span style="border-bottom: 1px solid #000; padding: 0 40px; display: inline-block;"></span></p>
-                <p style="font-size: 10pt; margin-top: 10px;">EMAIL: <span style="border-bottom: 1px solid #000; padding: 0 40px; display: inline-block;"></span></p>
-            </div>
-            <div style="flex: 1; margin-left: 20px;">
-                <p style="margin-bottom: 0;">BY:</p>
-                <div style="border-bottom: 1px solid #000; height: 1px; width: 100%; margin-top: 50px;"></div>
-                <p style="text-align: center; margin-top: 5px; font-size: 10pt;">Dana Jensen</p>
-                <p style="font-size: 10pt; margin-top: 20px; margin-bottom: 10px;">DATE: <span style="border-bottom: 1px solid #000; padding: 0 40px; display: inline-block;"></span></p>
-                <p style="font-size: 10pt; margin-top: 10px;">EMAIL: <span style="border-bottom: 1px solid #000; padding: 0 40px; display: inline-block;"></span></p>
-            </div>
-        </div>
     </div>
    
   `;
