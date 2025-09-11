@@ -1,20 +1,14 @@
 import './App.css';
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-} from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import HomePage from './Pages/HomePage';
 import CustomerPage from './Pages/CustomerPage';
-import { MuiThemeProvider } from './Components/SideBarComponents/Muithemeprovider';
 import Sidebarmain from './Components/SideBarComponents/Sidebarmain';
 import { useState, useEffect } from 'react';
 import AuthPage from './Components/HomePageComponents/AuthPage';
+import MuiThemeProvider from './Components/SideBarComponents/Muithemeprovider';
 
-function App() {
+const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
-
   useEffect(() => {
     const token = 'authToken';
     setIsAuthenticated(!!token);
@@ -34,7 +28,6 @@ function App() {
           ) : (
             <>
               <Route path="/" element={<AuthPage />} />
-
               <Route path="*" element={<Navigate to="/" replace />} />
             </>
           )}
@@ -42,6 +35,6 @@ function App() {
       </Router>
     </MuiThemeProvider>
   );
-}
+};
 
 export default App;

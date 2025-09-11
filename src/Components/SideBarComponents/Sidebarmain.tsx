@@ -1,17 +1,17 @@
-"use client";
-import React from "react";
-import { Box } from "@mui/material";
-import { Outlet } from "react-router-dom";
-import Sidebar from "./Sidebar";
-import Header from "./Header";
+'use client';
+import React from 'react';
+import { Box } from '@mui/material';
+import { Outlet } from 'react-router-dom';
+import Sidebar from './Sidebar';
+import Header from './Header';
 
 const Sidebarmain: React.FC = () => {
   return (
     <Box
       sx={{
-        display: "flex",
-        height: "100dvh",
-        overflow: "hidden",
+        display: 'flex',
+        height: '100dvh',
+        overflow: 'hidden',
       }}
     >
       <Sidebar />
@@ -19,9 +19,9 @@ const Sidebarmain: React.FC = () => {
         component="main"
         sx={{
           flex: 1,
-          display: "flex",
-          flexDirection: "column",
-          overflow: "hidden",
+          display: 'flex',
+          flexDirection: 'column',
+          overflow: 'hidden',
         }}
       >
         <Header />
@@ -29,11 +29,11 @@ const Sidebarmain: React.FC = () => {
         <Box
           sx={{
             flex: 1,
-            overflowY: "auto",
+            overflowY: 'auto',
             px: { xs: 2, sm: 3, md: 4 },
             pb: 2,
-            "&::-webkit-scrollbar": {
-              display: "none",
+            '&::-webkit-scrollbar': {
+              display: 'none',
             },
           }}
         >

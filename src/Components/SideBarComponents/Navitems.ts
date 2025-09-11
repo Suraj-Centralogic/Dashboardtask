@@ -1,10 +1,10 @@
-import type { SvgIconComponent } from "@mui/icons-material";
-import DashboardOutlinedIcon from "@mui/icons-material/DashboardOutlined";
-import StorefrontOutlinedIcon from "@mui/icons-material/StorefrontOutlined";
-import MonetizationOnOutlinedIcon from "@mui/icons-material/MonetizationOnOutlined";
-import CampaignOutlinedIcon from "@mui/icons-material/CampaignOutlined";
-import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
-import PermIdentityOutlinedIcon from "@mui/icons-material/PermIdentityOutlined";
+import type { SvgIconComponent } from '@mui/icons-material';
+import DashboardOutlinedIcon from '@mui/icons-material/DashboardOutlined';
+import StorefrontOutlinedIcon from '@mui/icons-material/StorefrontOutlined';
+import MonetizationOnOutlinedIcon from '@mui/icons-material/MonetizationOnOutlined';
+import CampaignOutlinedIcon from '@mui/icons-material/CampaignOutlined';
+import HelpOutlineOutlinedIcon from '@mui/icons-material/HelpOutlineOutlined';
+import PermIdentityOutlinedIcon from '@mui/icons-material/PermIdentityOutlined';
 
 export type NavItem = {
   label: string;
@@ -15,34 +15,34 @@ export type NavItem = {
 
 export const NAV_ITEMS: NavItem[] = [
   {
-    label: "Dashboard",
-    key: "dashboard",
+    label: 'Dashboard',
+    key: 'dashboard',
     icon: DashboardOutlinedIcon,
-    href: "/",
+    href: '/',
   },
   {
-    label: "Product",
-    key: "product",
+    label: 'Product',
+    key: 'product',
     icon: StorefrontOutlinedIcon,
-    href: "/product",
+    href: '/product',
   },
   {
-    label: "Customers",
-    key: "customers",
+    label: 'Customers',
+    key: 'customers',
     icon: PermIdentityOutlinedIcon,
-    href: "/customers",
+    href: '/customers',
   },
   {
-    label: "Income",
-    key: "income",
+    label: 'Income',
+    key: 'income',
     icon: MonetizationOnOutlinedIcon,
-    href: "/income",
+    href: '/income',
   },
   {
-    label: "Promote",
-    key: "promote",
+    label: 'Promote',
+    key: 'promote',
     icon: CampaignOutlinedIcon,
-    href: "/promote",
+    href: '/promote',
   },
-  { label: "Help", key: "help", icon: HelpOutlineOutlinedIcon, href: "/help" },
+  { label: 'Help', key: 'help', icon: HelpOutlineOutlinedIcon, href: '/help' },
 ];

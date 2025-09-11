@@ -14,7 +14,7 @@ import {
 import EmailTemplateEditor from '../Components/CommenComponents/MuiTextEditor';
 import PdfGenerator from '../Components/CommenComponents/PdfGenerator';
 
-export default function HomePage() {
+const HomePage = () => {
   const template = `
 <div style="font-family: 'Times New Roman', Times, serif; font-size: 11pt; padding: 30px; border: 1px solid #000; max-width: 800px; margin: auto; background-color: #ffffff; line-height: 1.6; color: #000;">
   
@@ -176,4 +176,5 @@ export default function HomePage() {
       </Card>
     </Box>
   );
-}
+};
+export default HomePage;

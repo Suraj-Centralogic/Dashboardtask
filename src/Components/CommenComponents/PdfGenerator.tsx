@@ -9,7 +9,7 @@ type PdfGeneratorProps = {
   template: string;
 };
 
-export default function PdfGenerator({}: PdfGeneratorProps) {
+const PdfGenerator = ({}: PdfGeneratorProps) => {
   const formik = useFormik({
     initialValues: {
       ClientName: '',
@@ -111,10 +111,7 @@ export default function PdfGenerator({}: PdfGeneratorProps) {
 
   return (
     <Card sx={{ maxWidth: 600, mx: 'auto' }}>
-      <CardHeader
-        title="Fill Agreement Details"
-        sx={{ textAlign: 'center', backgroundColor: '#f5f5f5' }}
-      />
+      <CardHeader title="Fill Agreement Details" sx={{ textAlign: 'center', backgroundColor: '#f5f5f5' }} />
       <CardContent>
         <Box
           component="form"
@@ -127,16 +124,8 @@ export default function PdfGenerator({}: PdfGeneratorProps) {
           noValidate
           autoComplete="off"
         >
-          <CustomTextField
-            name="AgentName"
-            label="Agent Name"
-            formik={formik}
-          />
-          <CustomTextField
-            name="ClientName"
-            label="Client Name"
-            formik={formik}
-          />
+          <CustomTextField name="AgentName" label="Agent Name" formik={formik} />
+          <CustomTextField name="ClientName" label="Client Name" formik={formik} />
           <CustomTextField
             name="EffectiveDate"
             label="Effective Date"
@@ -144,23 +133,14 @@ export default function PdfGenerator({}: PdfGeneratorProps) {
             type="date"
             InputLabelProps={{ shrink: true }}
           />
-          <CustomTextField
-            name="ReferralFee"
-            label="Referral Fee (%)"
-            formik={formik}
-          />
+          <CustomTextField name="ReferralFee" label="Referral Fee (%)" formik={formik} />
 
-          <Button
-            type="submit"
-            variant="contained"
-            color="primary"
-            fullWidth
-            disabled={!formik.isValid || !formik.dirty}
-          >
+          <Button type="submit" variant="contained" color="primary" fullWidth disabled={!formik.isValid || !formik.dirty}>
             Generate PDF
           </Button>
         </Box>
       </CardContent>
     </Card>
   );
-}
+};
+export default PdfGenerator;

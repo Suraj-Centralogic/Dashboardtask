@@ -1,44 +1,32 @@
-import { TextField, type TextFieldProps } from '@mui/material';
+import { TextField, type TextFieldProps, InputAdornment } from '@mui/material';
 import { type FormikProps } from 'formik';
 import { type ReactNode } from 'react';
 
-export interface FormValues {
-  ClientName: string;
-  EffectiveDate: string;
-  AgentName: string;
-  ReferralFee: string;
-}
-
-interface CustomTextFieldProps
-  extends Omit<
-    TextFieldProps,
-    'name' | 'value' | 'onChange' | 'error' | 'helperText'
-  > {
-  name: keyof FormValues;
+interface CustomTextFieldProps<T> extends Omit<TextFieldProps, 'name' | 'value' | 'onChange' | 'error' | 'helperText'> {
+  name: keyof T;
   label: string;
-  formik: FormikProps<FormValues>;
+  formik: FormikProps<T>;
   renderValue?: (value: string) => ReactNode;
   children?: ReactNode;
+  startAdornment?: ReactNode;
+  endAdornment?: ReactNode;
 }
 
-const CustomTextField: React.FC<CustomTextFieldProps> = ({
+const CustomTextField = <T extends Record<string, any>>({
   name,
   label,
   formik,
-  renderValue,
   children,
+  startAdornment,
+  endAdornment,
   ...props
-}) => {
-  // Determine error and helper text safely
+}: CustomTextFieldProps<T>) => {
   const error = Boolean(formik.touched[name] && formik.errors[name]);
-  const helperText =
-    formik.touched[name] && formik.errors[name]
-      ? String(formik.errors[name])
-      : undefined;
+  const helperText = formik.touched[name] && formik.errors[name] ? String(formik.errors[name]) : undefined;
 
   return (
     <TextField
-      name={name}
+      name={String(name)}
       label={label}
       variant="outlined"
       fullWidth
@@ -47,6 +35,10 @@ const CustomTextField: React.FC<CustomTextFieldProps> = ({
       onBlur={formik.handleBlur}
       error={error}
       helperText={helperText}
+      InputProps={{
+        startAdornment: startAdornment ? <InputAdornment position="start">{startAdornment}</InputAdornment> : undefined,
+        endAdornment: endAdornment ? <InputAdornment position="end">{endAdornment}</InputAdornment> : undefined,
+      }}
       sx={{
         ...(props.multiline && {
           '& .MuiInputBase-root': {

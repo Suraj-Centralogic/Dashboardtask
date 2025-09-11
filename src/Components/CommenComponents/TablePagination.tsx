@@ -1,6 +1,6 @@
-import Stack from "@mui/material/Stack";
-import Typography from "@mui/material/Typography";
-import Pagination from "@mui/material/Pagination";
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
+import Pagination from '@mui/material/Pagination';
 
 interface TablePaginationProps {
   page: number;
@@ -10,23 +10,17 @@ interface TablePaginationProps {
   onPageChange: (page: number) => void;
 }
 
-export default function TablePagination({
-  page,
-  pageCount,
-  totalItems,
-  rowsPerPage,
-  onPageChange,
-}: TablePaginationProps) {
+const TablePagination = ({ page, pageCount, totalItems, rowsPerPage, onPageChange }: TablePaginationProps) => {
   return (
     <Stack
-      direction={{ xs: "column", sm: "row" }}
-      alignItems={{ xs: "flex-start", sm: "center" }}
-      justifyContent={{ xs: "space-between", sm: "flex-end" }}
+      direction={{ xs: 'column', sm: 'row' }}
+      alignItems={{ xs: 'flex-start', sm: 'center' }}
+      justifyContent={{ xs: 'space-between', sm: 'flex-end' }}
       sx={{ pt: 1 }}
     >
       <Typography variant="body2" color="text.secondary">
-        Showing data {Math.min((page - 1) * rowsPerPage + 1, totalItems)} to{" "}
-        {Math.min(page * rowsPerPage, totalItems)} of {totalItems} entries
+        Showing data {Math.min((page - 1) * rowsPerPage + 1, totalItems)} to {Math.min(page * rowsPerPage, totalItems)} of{' '}
+        {totalItems} entries
       </Typography>
       <Pagination
         page={page}
@@ -39,4 +33,5 @@ export default function TablePagination({
       />
     </Stack>
   );
-}
+};
+export default TablePagination;

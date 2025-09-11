@@ -7,7 +7,7 @@ type Props = {
   template: string;
 };
 
-export default function EmailTemplateEditor({ template }: Props) {
+const EmailTemplateEditor = ({ template }: Props) => {
   const [value, setValue] = useState(template);
   const quillRef = useRef<any>(null);
 
@@ -19,17 +19,7 @@ export default function EmailTemplateEditor({ template }: Props) {
     ['clean'],
   ];
 
-  const formats = [
-    'header',
-    'bold',
-    'italic',
-    'underline',
-    'strike',
-    'list',
-    'bullet',
-    'link',
-    'image',
-  ];
+  const formats = ['header', 'bold', 'italic', 'underline', 'strike', 'list', 'bullet', 'link', 'image'];
 
   useEffect(() => {
     const savedContent = localStorage.getItem('emailTemplate');
@@ -66,7 +56,6 @@ export default function EmailTemplateEditor({ template }: Props) {
   };
 
   const handleSave = () => {
-    console.log('value', value);
     localStorage.setItem('emailTemplate', value);
     alert('Email template saved to localStorage!');
   };
@@ -74,11 +63,7 @@ export default function EmailTemplateEditor({ template }: Props) {
   return (
     <Box sx={{ margin: '0 auto' }}>
       <Box sx={{ display: 'flex', justifyContent: 'flex-end', m: 2 }}>
-        <Button
-          sx={{ backgroundColor: '#000', borderRadius: 0.5, px: 3 }}
-          variant="contained"
-          onClick={handleSave}
-        >
+        <Button sx={{ backgroundColor: '#000', borderRadius: 0.5, px: 3 }} variant="contained" onClick={handleSave}>
           Save
         </Button>
       </Box>
@@ -96,4 +81,5 @@ export default function EmailTemplateEditor({ template }: Props) {
       </Paper>
     </Box>
   );
-}
+};
+export default EmailTemplateEditor;
