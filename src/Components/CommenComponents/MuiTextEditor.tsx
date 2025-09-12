@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { Box, Paper, Button } from '@mui/material';
+import { Box, Paper } from '@mui/material';
 import 'react-quill-new/dist/quill.snow.css';
 import ReactQuill from 'react-quill-new';
 
@@ -8,7 +8,9 @@ type Props = {
 };
 
 const EmailTemplateEditor = ({ template }: Props) => {
-  const [value, setValue] = useState(template);
+  const [value, setValue] = useState(() => {
+    return localStorage.getItem('emailTemplate') || template;
+  });
   const quillRef = useRef<any>(null);
 
   const toolbarOptions = [
@@ -19,14 +21,17 @@ const EmailTemplateEditor = ({ template }: Props) => {
     ['clean'],
   ];
 
-  const formats = ['header', 'bold', 'italic', 'underline', 'strike', 'list', 'bullet', 'link', 'image'];
-
-  useEffect(() => {
-    const savedContent = localStorage.getItem('emailTemplate');
-    if (savedContent) {
-      setValue(savedContent);
-    }
-  }, []);
+  const formats = [
+    'header',
+    'bold',
+    'italic',
+    'underline',
+    'strike',
+    'list',
+    'bullet',
+    'link',
+    'image',
+  ];
 
   useEffect(() => {
     if (quillRef.current) {
@@ -55,18 +60,12 @@ const EmailTemplateEditor = ({ template }: Props) => {
     setValue(content);
   };
 
-  const handleSave = () => {
+  useEffect(() => {
     localStorage.setItem('emailTemplate', value);
-    alert('Email template saved to localStorage!');
-  };
+  }, [value]);
 
   return (
     <Box sx={{ margin: '0 auto' }}>
-      <Box sx={{ display: 'flex', justifyContent: 'flex-end', m: 2 }}>
-        <Button sx={{ backgroundColor: '#000', borderRadius: 0.5, px: 3 }} variant="contained" onClick={handleSave}>
-          Save
-        </Button>
-      </Box>
       <Paper elevation={3} sx={{ padding: 2 }}>
         <ReactQuill
           ref={quillRef}
@@ -82,4 +81,5 @@ const EmailTemplateEditor = ({ template }: Props) => {
     </Box>
   );
 };
+
 export default EmailTemplateEditor;

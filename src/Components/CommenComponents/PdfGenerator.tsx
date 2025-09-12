@@ -81,7 +81,6 @@ const PdfGenerator = ({}: PdfGeneratorProps) => {
           scale: window.devicePixelRatio || 2,
           useCORS: true,
           allowTaint: false,
-          backgroundColor: '#ffffff',
         });
 
         // Clean up temp element
@@ -117,7 +116,6 @@ const PdfGenerator = ({}: PdfGeneratorProps) => {
           ctx.drawImage(canvas, 0, renderedHeight, canvas.width, pageCanvas.height, 0, 0, canvas.width, pageCanvas.height);
 
           const pageData = pageCanvas.toDataURL('image/png');
-
           if (renderedHeight > 0) {
             pdf.addPage();
           }
