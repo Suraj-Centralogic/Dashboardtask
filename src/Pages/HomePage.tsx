@@ -16,77 +16,64 @@ import PdfGenerator from '../Components/CommenComponents/PdfGenerator';
 
 const HomePage = () => {
   const template = `
-<div style="font-family: 'Times New Roman', Times, serif; font-size: 11pt; padding: 30px; border: 1px solid #000; max-width: 800px; margin: auto; background-color: #ffffff; line-height: 1.6; color: #000;">
-  
-  <!-- Title Section -->
-  <h2 style="font-family: Arial, sans-serif; font-size: 16pt; color: #000; text-align: center; margin: 0; padding: 10px 0; background-color: #000; color: #fff;">
-    REFERRAL AGREEMENT
-  </h2>
+ <div style="padding: 20px; margin: auto; line-height: 1.6;">
+
+<table style="width: 100%; border-collapse: collapse;">
+  <tbody>
+    <tr>
+      <td style="padding: 8px; width: 50%; text-align: left;">
+        <div class="left" style="font-weight: 700;">
+              REFERRAL AGREEMENT
+            </div>
+      </td>
+
+      <td style="text-align: rigth;">
+       <div class="text-align: rigth">
+              <img src="/logo1.png" alt="Logo" style="height:50px;" />
+            </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
   <!-- Agreement Intro -->
-  <p style="margin-top: 20px; margin-bottom: 15px; text-align: justify;">
+  <p style="text-align: justify;">
     This Referral Agreement ("Agreement") is made on 
     <span style="font-weight: bold;">{EffectiveDate}</span>, by and between 
     <span style="font-weight: bold;">{AgentName}</span>, hereinafter referred to as "Agent", and 
     License Park Realty, LLC or Referral Solutions, Inc., hereinafter referred to and doing business as 
-    "Realty Connect" for the referral client referred by 
+    "Realty Connect" for the referral client 
     <span style="font-weight: bold;">{ClientName}</span>.
   </p>
 
-  <!-- Definition Section -->
-  <h3 style="font-family: Arial, sans-serif; font-size: 12pt; color: #000; margin-top: 25px; margin-bottom: 10px; border-bottom: 2px solid #000; padding-bottom: 5px;">
-    DEFINITION OF A REFERRAL
-  </h3>
-  <p style="margin-bottom: 15px; text-align: justify;">
-    Realty Connect agents make referrals of buyers and sellers of their real estate ("Clients") to a real estate agent who can best serve their needs. 
-    A "Referral" is defined as when Realty Connect has recommended the Agent to the Client. Realty Connect will notify the Agent of the Referral 
-    through the Realty Connect system and via email.
+  <!-- Definition of Referral -->
+  <h3 style="font-size: 13pt; margin-top: 20px;">DEFINITION OF A REFERRAL</h3>
+  <p style="text-align: justify;">
+    Realty Connect agents make referrals of buyers and sellers of real estate ("Clients") to a real estate agent who can best serve their needs. A "Referral" is defined as when Realty Connect has recommended the Agent to the Client. Realty Connect will notify the Agent of the Referral through the Realty Connect system and via email.
   </p>
 
-  <!-- Voluntary Participation Section -->
-  <h3 style="font-family: Arial, sans-serif; font-size: 12pt; color: #000; margin-top: 25px; margin-bottom: 10px; border-bottom: 2px solid #000; padding-bottom: 5px;">
-    VOLUNTARY PARTICIPATION
-  </h3>
-  <p style="margin-bottom: 15px; text-align: justify;">
-    The Agent’s participation in Realty Connect's referral program is voluntary and can be terminated by either party at any time with written notice. 
-    However, any Referrals made prior to such termination are still bound by this agreement, and referral fees will be due upon closing of any 
-    transactions resulting from such referrals.
+  <!-- Voluntary Participation -->
+  <h3 style="font-size: 13pt; margin-top: 20px;">VOLUNTARY PARTICIPATION</h3>
+  <p style="text-align: justify;">
+    The Agent's participation in Realty Connect's referral program is voluntary and can be terminated by either party at any time with written notice. However, any referrals made prior to such termination are still bound by this agreement, and referral fees will be due upon closing of any transactions resulting from such referrals.
   </p>
 
-  <!-- Referral Fee Section -->
-  <h3 style="font-family: Arial, sans-serif; font-size: 12pt; color: #000; margin-top: 25px; margin-bottom: 10px; border-bottom: 2px solid #000; padding-bottom: 5px;">
-    REFERRAL FEE
-  </h3>
-  <p style="margin-bottom: 10px; text-align: justify;">
-    For referrals made, the Agent agrees to pay Realty Connect a referral fee through the Agent's employing broker as follows:
-  </p>
-  <ul style="margin-left: 20px; padding-left: 15px; list-style-type: disc;">
-    <li>A referral fee is triggered when a transaction closes within two years of the date of the Referral.</li>
-    <li>The referral fee to Realty Connect shall be <span style="font-weight: bold;">{ReferralFee}%</span> of the receiving Agent’s side of total Gross Commission Income (GCI) prior to any splits or concessions.</li>
-    <li>Upon execution of a contract, the Agent will promptly update the referral in the Realty Connect System with the anticipated closing date.</li>
-    <li>The receiving Agent will ensure the referral fee is paid to Realty Connect within 10 business days of close of escrow.</li>
+  <!-- Referral Fee -->
+  <h3 style="font-size: 13pt; margin-top: 20px;">REFERRAL FEE</h3>
+  <ul style="margin-left: 20px;">
+    <li>A referral fee is triggered when a transaction closes within two years of the date of the referral.</li>
+    <li>The referral fee to Realty Connect shall be <strong>{ReferralFee}%</strong> of the receiving Agent's side of the total Gross Commission Income (GCI).</li>
+    <li>If an Agent represents a client referred by Realty Connect in multiple transactions, the same referral fee applies unless otherwise agreed.</li>
+    <li>GCI is calculated as the total amount received by the Agent's broker before any split of commission.</li>
+    <li>The referral fee must be paid to Realty Connect within 10 business days of closing.</li>
   </ul>
 
-  <!-- Fine Print Section -->
-  <h3 style="font-family: Arial, sans-serif; font-size: 12pt; color: #000; margin-top: 25px; margin-bottom: 10px; border-bottom: 2px solid #000; padding-bottom: 5px;">
-    FINE PRINT AND OTHER DETAILS
-  </h3>
-  <ul style="margin-left: 20px; padding-left: 15px; list-style-type: disc;">
-    <li>The Agent will maintain their license and comply with all state laws, documentation, and disclosure requirements.</li>
-    <li>All notices between Realty Connect and the Agent must be sent to the email addresses listed below.</li>
-    <li>Legal disputes will be resolved with the prevailing party entitled to recover attorney’s fees and costs.</li>
-  </ul>
+  <!-- Fine Print -->
+  <h3 style="font-size: 13pt; margin-top: 20px;">FINE PRINT AND OTHER DETAILS</h3>
+  <p style="text-align: justify;">
+    The Agent is responsible for maintaining their license and complying with all real estate laws. Realty Connect is not liable for claims made by clients regarding services provided by the Agent. This agreement is governed by state laws, and any legal disputes will be handled accordingly.
+  </p>
 
-  <!-- Signature Section -->
-<div style="margin-top: 20px; width: 100%; display: flex; justify-content: space-between;">
-  <!-- Left Column -->
-  <div style="width: 48%;">
-    <p style="margin: 0 0 5px;">BY:</p>
-    <p style="margin: 0 0 8px;">AGENT</p>
-    <p style="margin: 0 0 5px;">DATE:</p>
-    <p style="margin: 0;">EMAIL:</p>
-  </div>
-</div>
 </div>
 `;
 

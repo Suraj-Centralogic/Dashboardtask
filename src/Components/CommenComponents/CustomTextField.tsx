@@ -2,7 +2,11 @@ import { TextField, type TextFieldProps, InputAdornment } from '@mui/material';
 import { type FormikProps } from 'formik';
 import { type ReactNode } from 'react';
 
-interface CustomTextFieldProps<T> extends Omit<TextFieldProps, 'name' | 'value' | 'onChange' | 'error' | 'helperText'> {
+interface CustomTextFieldProps<T>
+  extends Omit<
+    TextFieldProps,
+    'name' | 'value' | 'onChange' | 'error' | 'helperText'
+  > {
   name: keyof T;
   label: string;
   formik: FormikProps<T>;
@@ -22,7 +26,10 @@ const CustomTextField = <T extends Record<string, any>>({
   ...props
 }: CustomTextFieldProps<T>) => {
   const error = Boolean(formik.touched[name] && formik.errors[name]);
-  const helperText = formik.touched[name] && formik.errors[name] ? String(formik.errors[name]) : undefined;
+  const helperText =
+    formik.touched[name] && formik.errors[name]
+      ? (formik.errors[name] as string)
+      : undefined;
 
   return (
     <TextField
@@ -36,8 +43,12 @@ const CustomTextField = <T extends Record<string, any>>({
       error={error}
       helperText={helperText}
       InputProps={{
-        startAdornment: startAdornment ? <InputAdornment position="start">{startAdornment}</InputAdornment> : undefined,
-        endAdornment: endAdornment ? <InputAdornment position="end">{endAdornment}</InputAdornment> : undefined,
+        startAdornment: startAdornment ? (
+          <InputAdornment position="start">{startAdornment}</InputAdornment>
+        ) : undefined,
+        endAdornment: endAdornment ? (
+          <InputAdornment position="end">{endAdornment}</InputAdornment>
+        ) : undefined,
       }}
       sx={{
         ...(props.multiline && {

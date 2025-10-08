@@ -1,0 +1,6 @@
+projectKey=dashboarss
+serverUrl=http://localhost:9000
+serverVersion=25.9.0.112764
+dashboardUrl=http://localhost:9000/dashboard?id=dashboarss
+ceTaskId=d99891ce-60ee-419e-bc53-48030a47e1f3
+ceTaskUrl=http://localhost:9000/api/ce/task?id=d99891ce-60ee-419e-bc53-48030a47e1f3

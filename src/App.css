@@ -44,3 +44,6 @@ body {
   width: 100%; /* Ensure full width */
   overflow: hidden; /* Prevent scrolling */
 }
+.ql-editor span {
+  display: inline-block !important;
+}

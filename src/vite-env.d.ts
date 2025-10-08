@@ -1,1 +1,1 @@
-/// <reference types="vite/client" />
+export const VITE_GRAPHQL_API = 'https://example.com/graphql';

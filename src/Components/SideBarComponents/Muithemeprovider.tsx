@@ -43,7 +43,7 @@ const MuiThemeProvider = ({ children, mode = 'light' }: Props) => {
           error: { main: '#EF4444' },
           warning: { main: '#F59E0B' },
           background: {
-            default: mode === 'light' ? '#f4f6fb' : '#0B1020',
+            default: mode === 'light' ? '#ffffffff' : '#0B1020',
             paper: mode === 'light' ? '#ffffff' : '#0F162E',
           },
           custom: {
@@ -59,7 +59,8 @@ const MuiThemeProvider = ({ children, mode = 'light' }: Props) => {
           borderRadius: 16,
         },
         typography: {
-          fontFamily: 'Poppins, var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system',
+          fontFamily:
+            'Poppins, var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system',
           fontWeightBold: 800,
         },
         components: {

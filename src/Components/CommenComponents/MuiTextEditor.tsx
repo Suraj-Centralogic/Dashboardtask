@@ -14,14 +14,19 @@ const EmailTemplateEditor = ({ template }: Props) => {
   const quillRef = useRef<any>(null);
 
   const toolbarOptions = [
+    [
+      {
+        font: [],
+      },
+    ],
     [{ header: [1, 2, 3, false] }],
     ['bold', 'italic', 'underline', 'strike'],
     [{ list: 'ordered' }, { list: 'bullet' }],
     ['link', 'image'],
-    ['clean'],
+    ['table'],
   ];
-
   const formats = [
+    'font',
     'header',
     'bold',
     'italic',
@@ -31,6 +36,7 @@ const EmailTemplateEditor = ({ template }: Props) => {
     'bullet',
     'link',
     'image',
+    'table',
   ];
 
   useEffect(() => {
@@ -39,6 +45,8 @@ const EmailTemplateEditor = ({ template }: Props) => {
       const editorElement = editor.root;
 
       editorElement.addEventListener('paste', handlePaste);
+      editorElement.style.lineHeight = '1.2';
+      editorElement.style.letterSpacing = '0.2px';
 
       return () => {
         editorElement.removeEventListener('paste', handlePaste);

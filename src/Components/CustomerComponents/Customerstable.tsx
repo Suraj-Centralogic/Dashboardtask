@@ -8,7 +8,15 @@ import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import { useTheme } from '@mui/material/styles';
-import { Box, Chip, IconButton, InputAdornment, Stack, TextField, Typography } from '@mui/material';
+import {
+  Box,
+  Chip,
+  IconButton,
+  InputAdornment,
+  Stack,
+  TextField,
+  Typography,
+} from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
@@ -125,7 +133,9 @@ const ColumnGroupingTable = () => {
     setPage(newPage);
   };
 
-  const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangeRowsPerPage = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
     setSortBy('Newest');
@@ -146,12 +156,20 @@ const ColumnGroupingTable = () => {
           <Typography variant="h6" fontWeight={700}>
             All Customers
           </Typography>
-          <Typography variant="body2" sx={{ mt: 0.5, fontWeight: 600, color: theme.palette.custom.slate }}>
+          <Typography
+            variant="body2"
+            sx={{ mt: 0.5, fontWeight: 600, color: theme.palette.custom.slate }}
+          >
             Active Members
           </Typography>
         </Box>
 
-        <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} alignItems="center" sx={{ flexShrink: 0 }}>
+        <Stack
+          direction={{ xs: 'column', sm: 'row' }}
+          spacing={2}
+          alignItems="center"
+          sx={{ flexShrink: 0 }}
+        >
           <TextField
             size="small"
             placeholder="Search"
@@ -194,7 +212,14 @@ const ColumnGroupingTable = () => {
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
-              {['Customer Name', 'Company', 'Phone Number', 'Email', 'Country', 'Status'].map((label) => (
+              {[
+                'Customer Name',
+                'Company',
+                'Phone Number',
+                'Email',
+                'Country',
+                'Status',
+              ].map((label) => (
                 <TableCell
                   key={label}
                   align="left"
@@ -214,27 +239,32 @@ const ColumnGroupingTable = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
-              <TableRow hover role="checkbox" tabIndex={-1}>
-                <TableCell>{row.name}</TableCell>
-                <TableCell>{row.company}</TableCell>
-                <TableCell>{row.phone}</TableCell>
-                <TableCell>{row.email}</TableCell>
-                <TableCell>{row.country}</TableCell>
-                <TableCell align="right">
-                  <Chip
-                    label={row.status}
-                    variant="outlined"
-                    color={row.status === 'Active' ? 'success' : 'error'}
-                    size="small"
-                    sx={{
-                      fontWeight: 600,
-                      bgcolor: row.status === 'Active' ? theme.palette.success.main : theme.palette.error.main,
-                    }}
-                  />
-                </TableCell>
-              </TableRow>
-            ))}
+            {rows
+              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              .map((row) => (
+                <TableRow hover role="checkbox" tabIndex={-1}>
+                  <TableCell>{row.name}</TableCell>
+                  <TableCell>{row.company}</TableCell>
+                  <TableCell>{row.phone}</TableCell>
+                  <TableCell>{row.email}</TableCell>
+                  <TableCell>{row.country}</TableCell>
+                  <TableCell align="right">
+                    <Chip
+                      label={row.status}
+                      variant="outlined"
+                      color={row.status === 'Active' ? 'success' : 'error'}
+                      size="small"
+                      sx={{
+                        fontWeight: 600,
+                        bgcolor:
+                          row.status === 'Active'
+                            ? theme.palette.success.main
+                            : theme.palette.error.main,
+                      }}
+                    />
+                  </TableCell>
+                </TableRow>
+              ))}
           </TableBody>
         </Table>
       </TableContainer>
